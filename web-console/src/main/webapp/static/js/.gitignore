@@ -1,0 +1,16 @@
+build
+out
+*.log
+.idea
+vcs.xml
+.gradle
+node_modules
+*.lock
+*.log
+**/dist
+**/*.iml
+**/*.ipr
+**/*.iws
+dist
+
+

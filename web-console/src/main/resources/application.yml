@@ -9,3 +9,12 @@ logging:
         com:
              towery:
                   myignite: DEBUG
+spring:
+    application:
+        name: my-ignite-web-console
+    profiles:
+        active: dev
+    mvc:
+        view:
+            prefix: /jsp/
+            suffix: .jsp

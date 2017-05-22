@@ -1,0 +1,34 @@
+{
+  "name": "my-ignite-web",
+  "version": "1.0.0",
+  "description": "my ignite web manager",
+  "author": "wuyijun",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.15.2",
+    "element-ui": "^1.3.1",
+    "uuid": "*",
+    "vue": "^2.3.3",
+    "vue-router": "^2.3.3",
+    "vuex": "^2.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-runtime": "^5.8.34",
+    "cross-env": "^3.1.1",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "~2.1.0",
+    "file-loader": "^0.9.0",
+    "postcss-loader": "^1.2.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "1.14.1"
+  }
+}
