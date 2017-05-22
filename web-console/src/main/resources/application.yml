@@ -1,0 +1,11 @@
+server:
+    port: 18080
+    context-path: /web-console
+    tomcat:
+         uri-encoding: UTF-8
+         max-threads: 150
+logging:
+    level:
+        com:
+             towery:
+                  myignite: DEBUG

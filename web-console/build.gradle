@@ -1,0 +1,25 @@
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+ext.SpringVersion = "1.4.1.RELEASE"
+dependencies {
+    compile "org.springframework.boot:spring-boot:$SpringVersion"
+    compile ("org.springframework.boot:spring-boot-starter-web:$SpringVersion"){
+        exclude module: 'org.springframework.boot:spring-boot-starter-logging'
+    }
+
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    providedCompile('org.springframework.boot:spring-boot-starter-tomcat') {
+        exclude module: 'org.springframework.boot:spring-boot-starter-logging'
+    }
+    runtime fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
+    runtime 'mysql:mysql-connector-java'
+    compile 'javax.servlet:jstl'
+
+
+
+    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+}
+
+springBoot{
+    mainClass ="com.towery.myignite.WebConsole"
+}

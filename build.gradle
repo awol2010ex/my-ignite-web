@@ -1,0 +1,68 @@
+group 'com.towery'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.2'
+
+    repositories {
+        maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
+        maven{
+            url 'http://repo.spring.io/libs-milestone/'
+        }
+
+        mavenCentral()
+        jcenter{
+            url 'http://jcenter.bintray.com/'
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext.IgniteVersion = "2.0.0"
+
+repositories {
+    maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
+    maven{
+        url 'http://repo.spring.io/libs-milestone/'
+    }
+
+    mavenCentral()
+    jcenter{
+        url 'http://jcenter.bintray.com/'
+    }
+}
+
+allprojects {
+    group 'com.towery'
+    version '1.0-SNAPSHOT'
+    apply plugin: 'java'
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven {
+            url 'http://repo.spring.io/libs-milestone/'
+        }
+
+        mavenCentral()
+        jcenter {
+            url 'http://jcenter.bintray.com/'
+        }
+    }
+}
+subprojects {
+    apply plugin: 'kotlin'
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.2-4"
+
+        compile "org.apache.ignite:ignite-core:$IgniteVersion"
+        compile "org.apache.ignite:ignite-spring:$IgniteVersion"
+        compile "org.apache.ignite:ignite-indexing:$IgniteVersion"
+    }
+}

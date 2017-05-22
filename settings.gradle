@@ -1,0 +1,4 @@
+rootProject.name = 'my-ignite-web'
+
+include "web-console"
+
