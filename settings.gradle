@@ -1,4 +1,5 @@
 rootProject.name = 'my-ignite-web'
 
 include "web-console"
-
+include "ignite-entitys"
+include "ignite-config"

@@ -18,6 +18,8 @@ dependencies {
 
 
     runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+    compile project(':ignite-config')
 }
 
 springBoot{
