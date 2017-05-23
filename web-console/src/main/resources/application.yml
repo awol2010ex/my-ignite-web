@@ -40,3 +40,6 @@ spring:
         view:
             prefix: /jsp/
             suffix: .jsp
+mybatis:
+     mapper-locations: mybatis/**/*.xml
+     typeAliasesPackage: com.towery.ignite.mybatis

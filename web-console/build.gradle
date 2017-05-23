@@ -20,8 +20,11 @@ dependencies {
     runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
     compile project(':ignite-config')
+    compile project(':ignite-entitys')
+    compile project(':ignite-mybatis')
+    compile project(':ignite-services')
 }
 
 springBoot{
-    mainClass ="com.towery.myignite.WebConsole"
+    mainClass ="com.towery.ignite.WebConsole"
 }

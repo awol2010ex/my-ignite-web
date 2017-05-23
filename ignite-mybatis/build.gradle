@@ -3,4 +3,6 @@ dependencies {
     compile 'org.mybatis:mybatis:$mybatis'
     compile 'org.mybatis:mybatis-spring:$mybatisSpring'
     compile 'com.baomidou:mybatis-plus:2.0.8'
+
+    compile project(':ignite-entitys')
 }

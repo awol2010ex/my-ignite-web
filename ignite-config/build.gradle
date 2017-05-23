@@ -2,9 +2,12 @@
 dependencies {
     compile 'com.alibaba:druid:1.0.18'
     compile 'org.springframework:spring-jdbc:4.2.6.RELEASE'
-    compile 'org.mybatis:mybatis:3.3.1'
-    compile 'org.mybatis:mybatis-spring:1.2.4'
-    compile 'com.baomidou:mybatis-plus:2.0-beta'
+
+    compile 'org.mybatis:mybatis:$mybatis'
+    compile 'org.mybatis:mybatis-spring:$mybatisSpring'
+    compile 'com.baomidou:mybatis-plus:2.0.8'
+
     compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
     compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.springframework:spring-webmvc:4.2.6.RELEASE'
 }

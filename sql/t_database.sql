@@ -1,0 +1,9 @@
+CREATE TABLE `t_database` (
+  `ID` varchar(32) NOT NULL,
+  `NAME` varchar(64) DEFAULT NULL,
+  `JDBCCLASS` varchar(32) DEFAULT NULL,
+  `JDBCURL` varchar(64) DEFAULT NULL,
+  `DBUSER` varchar(32) DEFAULT NULL,
+  `DBPASSWORD` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

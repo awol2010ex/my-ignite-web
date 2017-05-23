@@ -1,4 +1,4 @@
-package com.towery.myignite
+package com.towery.ignite
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.SpringApplication
