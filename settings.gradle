@@ -1,5 +1,5 @@
 rootProject.name = 'my-ignite-web'
-
+include "ignite-utils"
 include "web-console"
 include "ignite-config"
 include "ignite-mybatis"

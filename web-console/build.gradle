@@ -14,11 +14,11 @@ dependencies {
     runtime fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
     runtime 'mysql:mysql-connector-java'
     compile 'javax.servlet:jstl'
-
+    compile 'com.alibaba:fastjson:1.2.28'
 
 
     runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
-
+    compile project(':ignite-utils')
     compile project(':ignite-config')
     compile project(':ignite-entitys')
     compile project(':ignite-mybatis')

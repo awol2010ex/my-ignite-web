@@ -15,20 +15,20 @@ import java.io.Serializable
 class TDatabaseVO : Model<TDatabaseVO>(), Serializable {
 
     @TableId(value = "id")
-    val id: String? = null
+    var id: String? = null
 
     @TableField(value = "name")
-    val name: String? = null
+    var name: String? = null
 
     @TableField(value = "jdbcclass")
-    val jdbcclass: String? = null
+    var jdbcclass: String? = null
 
     @TableField(value = "jdbcurl")
-    val jdbcurl: String? = null
+    var jdbcurl: String? = null
     @TableField(value = "dbuser")
-    private val dbuser: String? = null
+    var dbuser: String? = null
     @TableField(value = "dbpassword")
-    val dbpassword: String? = null
+    var dbpassword: String? = null
 
     override fun pkVal(): Serializable {
         return id!!

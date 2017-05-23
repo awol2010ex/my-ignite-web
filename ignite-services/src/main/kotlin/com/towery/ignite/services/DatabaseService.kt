@@ -19,4 +19,19 @@ open class DatabaseService {
     fun getDatabaseList()  :List<TDatabaseVO>?{
         return databaseMapper?.selectList(null)
     }
+
+    fun insertDatabase( vo :TDatabaseVO){
+        databaseMapper?.insert(vo)
+    }
+    fun updateDatabase( vo :TDatabaseVO){
+        databaseMapper?.updateById(vo)
+    }
+    fun deleteDatabase( id :String){
+        databaseMapper?.deleteById(id)
+    }
+    fun getDatabase( id :String) :TDatabaseVO?{
+        return databaseMapper?.selectById(id)
+    }
+
+
 }
