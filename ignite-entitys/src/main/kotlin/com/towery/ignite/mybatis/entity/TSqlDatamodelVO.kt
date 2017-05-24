@@ -9,13 +9,42 @@ import java.io.Serializable
 /**
  * Created by User on 2017/5/24.
  */
-@TableName(value = "t_database")
+@TableName(value = "t_sql_datamodel")
 class TSqlDatamodelVO : Model<TSqlDatamodelVO>(), Serializable {
     @TableId(value = "id")
     var id: String? = null
 
     @TableField(value = "name")
     var name: String? = null
+    override fun pkVal(): Serializable {
+        return id!!
+    }
+}
+
+@TableName(value = "t_sql_datamodel_item")
+class TSqlDatamodelItemVO : Model<TSqlDatamodelItemVO>(), Serializable {
+    @TableId(value = "id")
+    var id: String? = null
+    @TableField(value = "modelid")
+    var modelid: String? = null
+    @TableField(value = "tablename")
+    var tablename: String? = null
+    override fun pkVal(): Serializable {
+        return id!!
+    }
+}
+
+
+@TableName(value = "t_sql_datamodel_item_column")
+class TSqlDatamodelItemColumnVO : Model<TSqlDatamodelItemColumnVO>(), Serializable {
+    @TableId(value = "id")
+    var id: String? = null
+    @TableField(value = "columnname")
+    var columnname: String? = null
+    @TableField(value = "columntype")
+    var columntype: String? = null
+    @TableField(value = "modelitemid")
+    var modelitemid: String? = null
     override fun pkVal(): Serializable {
         return id!!
     }

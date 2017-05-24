@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Main from './Main.vue';
 import DatabaseListView from './components/DatabaseListView.vue';
 import SqlDatamodelListView from './components/SqlDatamodelListView.vue';
+import SqlDatamodelEditView from './components/SqlDatamodelEditView.vue';
 Vue.use(VueRouter);
 
 import Vuex from 'vuex';
@@ -14,7 +15,8 @@ const router = new VueRouter({
             path: '/', component: Main,
             children :[
                      {name :"databaselist", path: "/database/list" , component: DatabaseListView   },
-                     {name :"sqldatamodellist", path: "/sqldatamodel/list" , component: SqlDatamodelListView   }
+                     {name :"sqldatamodellist", path: "/sqldatamodel/list" , component: SqlDatamodelListView   },
+                     {name :"sqldatamodelnew", path: "/sqldatamodel/new" , component: SqlDatamodelEditView   }
              ]
         }
     ]

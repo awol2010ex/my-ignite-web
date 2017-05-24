@@ -9,7 +9,7 @@
             <el-row :gutter="20" >
 
                 <el-col :span="4" style="padding:10px">
-                   <el-card class="box-card" style="height:500px">
+                   <el-card class="box-card menu-container" >
                       <el-row>
                            <el-col :span="24" class="menu-button-col">
                               <el-button type="primary" size="large" class="menu-button" @click="gotoDatabaseListView">数据源</el-button>
@@ -74,11 +74,14 @@
   background-color:#CCCCCC
 }
 .menu-button-col{
-   padding:20px;
+   padding:5px;
    text-align:center;
 }
 .menu-button {
-  width:150px
+  width:100px
 }
-
+.menu-container{
+   height:500px;
+   padding:5px;
+}
 </style>

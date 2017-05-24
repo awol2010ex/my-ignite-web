@@ -1,6 +1,11 @@
 <template>
     <div style="width: 100%;padding:10px;">
-         <el-table
+      <el-row>
+         <el-col :span="24" style="padding:10px">
+              <el-button type="primary" @click="newSqlDatamodel">新增</el-button>
+         </el-col>
+         <el-col :span="24">
+              <el-table
                        :data="dataList"
                        border
                        style="width: 100%"
@@ -12,7 +17,9 @@
                          width="180">
                        </el-table-column>
 
-                     </el-table>
+               </el-table>
+         </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -24,6 +31,19 @@
     Vue.component(Table.name, Table)
     Vue.component(TableColumn.name, TableColumn)
     Vue.component(Pagination.name, Pagination)
+
+    import {Col,Row ,Button} from 'element-ui'
+    Vue.component(Col.name, Col)
+    Vue.component(Row.name, Row)
+    Vue.component(Button.name, Button)
+    import 'element-ui/lib/theme-default/icon.css';
+    import 'element-ui/lib/theme-default/row.css';
+    import 'element-ui/lib/theme-default/col.css';
+    import 'element-ui/lib/theme-default/button.css';
+
+
+
+
     import {serviceApi} from '../services/service.js';
     export default {
         data () {
@@ -40,6 +60,11 @@
                     }
              );
 
+        },
+        methods:{
+             newSqlDatamodel(){
+                  this.$router.push("/sqldatamodel/new")
+             }
         }
     }
 </script>
