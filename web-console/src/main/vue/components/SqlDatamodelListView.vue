@@ -8,18 +8,10 @@
                        >
                        <el-table-column
                          prop="name"
-                         label="数据源名称"
+                         label="模型名称"
                          width="180">
                        </el-table-column>
-                       <el-table-column
-                         prop="jdbcurl"
-                         label="地址"
-                         width="360">
-                       </el-table-column>
-                       <el-table-column
-                         prop="dbuser"
-                         label="用户名">
-                       </el-table-column>
+
                      </el-table>
     </div>
 </template>
@@ -42,7 +34,7 @@
         mounted() {
 
              const me=this
-             serviceApi.invokeApi("DatabaseService","getDatabaseList",null).then(
+             serviceApi.invokeApi("SqlDatamodelService","getSqlDatamodelList",null).then(
                     ret =>{
                          me.dataList =ret
                     }

@@ -1,8 +1,8 @@
 package com.towery.ignite.controllers
 
 import com.alibaba.fastjson.JSON
-import com.towery.ignite.mybatis.entity.TDatabaseVO
-import com.towery.ignite.services.DatabaseService
+import com.towery.ignite.mybatis.entity.TSqlDatamodelVO
+import com.towery.ignite.services.SqlDatamodelService
 import com.towery.ignite.utils.StringUtils
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
 /**
- * Created by User on 2017/5/23.
+ * Created by User on 2017/5/24.
  */
 @Controller
-@RequestMapping(value="/services/DatabaseService")
-open class DatabaseController {
+@RequestMapping(value="/services/SqlDatamodelService")
+open class SqlDatamodelController {
 
     @Autowired
-    val databaseService : DatabaseService? = null
-    @RequestMapping(value="/getDatabaseList")
+    val sqlDatamodelService : SqlDatamodelService? = null
+    @RequestMapping(value="/getSqlDatamodelList")
     @ResponseBody
-    fun getDatabaseList() :List<TDatabaseVO>?{
-       return  databaseService!!.getDatabaseList()
+    fun getDatabaseList() :List<TSqlDatamodelVO>?{
+        return  sqlDatamodelService!!.getSqlDatamodelList()
     }
 
     @RequestMapping(value="/saveDatabase")
     @ResponseBody
-    fun saveDatabase(data:String ) :Boolean {
+    fun saveSqlDatamodel(data:String ) :Boolean {
         var result:Boolean =true
         try{
-           var d :TDatabaseVO= JSON.parseObject(data, TDatabaseVO::class.java)
+            var d :TSqlDatamodelVO= JSON.parseObject(data, TSqlDatamodelVO::class.java)
 
             if (d.id ==null || d.id ==""){
                 d.id = StringUtils.UUID()
-                databaseService!!.insertDatabase(d)
+                sqlDatamodelService!!.insertSqlDatamodel(d)
             }
             else{
-                databaseService!!.updateDatabase(d)
+                sqlDatamodelService!!.updateSqlDatamodel(d)
             }
 
         }catch (e :Exception){
@@ -49,12 +49,12 @@ open class DatabaseController {
         return result
     }
 
-    @RequestMapping(value="/deleteDatabase")
+    @RequestMapping(value="/deleteSqlDatamodel")
     @ResponseBody
-    fun deleteDatabase(id:String ) :Boolean {
+    fun deleteSqlDatamodel(id:String ) :Boolean {
         var result:Boolean =true
         try{
-            databaseService!!.deleteDatabase(id)
+            sqlDatamodelService!!.deleteSqlDatamodel(id)
 
         }catch (e :Exception){
             logger.error("",e)
@@ -67,6 +67,6 @@ open class DatabaseController {
 
 
     companion object {
-        var logger = Logger.getLogger(DatabaseController::class.java)
+        var logger = Logger.getLogger(SqlDatamodelController::class.java)
     }
 }

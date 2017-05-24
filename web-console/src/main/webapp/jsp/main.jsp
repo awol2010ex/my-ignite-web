@@ -5,7 +5,7 @@
 <head>
 <meta  http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body style="width:100%;height:100%;">
+<body style="width:95%;height:100%;">
         <div id="app" style="width:100%;height:100%;">
             <router-view></router-view>
         </div>

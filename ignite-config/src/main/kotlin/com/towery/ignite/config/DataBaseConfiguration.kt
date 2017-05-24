@@ -8,9 +8,8 @@ import org.springframework.context.EnvironmentAware
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
-
-import javax.sql.DataSource
 import java.sql.SQLException
+import javax.sql.DataSource
 
 //数据库配置
 @Configuration

@@ -15,10 +15,8 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.DefaultResourceLoader
-import org.springframework.core.io.ResourceLoader
 import org.springframework.util.ObjectUtils
 import org.springframework.util.StringUtils
-
 import javax.sql.DataSource
 
 /**
