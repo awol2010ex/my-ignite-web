@@ -6,6 +6,7 @@ import SqlDatamodelListView from './components/SqlDatamodelListView.vue';
 import SqlDatamodelEditView from './components/SqlDatamodelEditView.vue';
 Vue.use(VueRouter);
 
+import store from './store'
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
@@ -23,5 +24,6 @@ const router = new VueRouter({
 })
 
 const app = new Vue({
-    router
+   store :store,
+   router: router
 }).$mount('#app')

@@ -40,7 +40,7 @@
             }
         },
         mounted() {
-
+             this.$store.dispatch('change_page_name',[{name:"首页",path:"/"},{name:"数据源列表",path:"/database/list"}]);
              const me=this
              serviceApi.invokeApi("DatabaseService","getDatabaseList",null).then(
                     ret =>{

@@ -1,7 +1,11 @@
 <template>
     <div class="wholescreen" >
-            <el-row :gutter="20" class="topBar">
-
+            <el-row :gutter="20" class="topBar" >
+                     <el-breadcrumb separator="/">
+                          <el-breadcrumb-item   v-for="p in $store.state.pageName"   >
+                             <el-breadcrumb-item  :to="{path:p.path}" :replace="true">{{p.name}}</el-breadcrumb-item>
+                          </el-breadcrumb-item >
+                     </el-breadcrumb>
             </el-row>
 
 
@@ -34,15 +38,23 @@
     import Vue from 'vue';
 
     import {Col,Row ,Card,Button} from 'element-ui'
-    	Vue.component(Col.name, Col)
-    	Vue.component(Row.name, Row)
-        Vue.component(Button.name, Button)
-        Vue.component(Card.name, Card)
-    	import 'element-ui/lib/theme-default/icon.css';
-    	import 'element-ui/lib/theme-default/row.css';
-    	import 'element-ui/lib/theme-default/col.css';
-        import 'element-ui/lib/theme-default/button.css';
-         import 'element-ui/lib/theme-default/card.css';
+    Vue.component(Col.name, Col)
+    Vue.component(Row.name, Row)
+    Vue.component(Button.name, Button)
+    Vue.component(Card.name, Card)
+    import 'element-ui/lib/theme-default/icon.css';
+    import 'element-ui/lib/theme-default/row.css';
+    import 'element-ui/lib/theme-default/col.css';
+    import 'element-ui/lib/theme-default/button.css';
+    import 'element-ui/lib/theme-default/card.css';
+
+
+    import {Breadcrumb,BreadcrumbItem} from 'element-ui'
+    Vue.component(Breadcrumb.name, Breadcrumb)
+	Vue.component(BreadcrumbItem.name, BreadcrumbItem)
+    import 'element-ui/lib/theme-default/breadcrumb-item.css';
+    import 'element-ui/lib/theme-default/breadcrumb.css';
+
     export default {
         data () {
             return {
@@ -50,6 +62,8 @@
         },
 		components:{},
         mounted() {
+            this.$store.dispatch('change_page_name',[{name:"首页",path:"/"}]);
+
         }
 		,methods:{
 
@@ -71,7 +85,8 @@
 }
 .topBar{
   height:30px;
-  background-color:#CCCCCC
+  padding:20px;
+  font-size:14px;
 }
 .menu-button-col{
    padding:5px;

@@ -52,6 +52,7 @@
             }
         },
         mounted() {
+             this.$store.dispatch('change_page_name',[{name:"首页",path:"/"},{name:"SQL模型列表",path:"/sqldatamodel/list"}]);
 
              const me=this
              serviceApi.invokeApi("SqlDatamodelService","getSqlDatamodelList",null).then(
