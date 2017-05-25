@@ -9,6 +9,6 @@
         <div id="app" style="width:100%;height:100%;">
             <router-view></router-view>
         </div>
-        <script src="./static/js/dist/main.bundle.js"></script>
+        <script src="./static/js/dist/main.bundle.js?i=<%=new java.util.Date().getTime()%>"></script>
 </body>
 </html>

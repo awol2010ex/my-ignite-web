@@ -3,6 +3,8 @@ package com.towery.ignite.controllers
 import com.alibaba.fastjson.JSON
 import com.towery.ignite.mybatis.entity.TDatabaseVO
 import com.towery.ignite.services.DatabaseService
+import com.towery.ignite.services.TableObject
+import com.towery.ignite.services.TableObjectList
 import com.towery.ignite.utils.StringUtils
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -63,6 +65,19 @@ open class DatabaseController {
         }
 
         return result
+    }
+
+
+
+    @RequestMapping(value="/getTableList")
+    @ResponseBody
+    fun getTableList(data :String) : TableObjectList {
+        val o =JSON.parseObject(data)
+        val id =o.getString("id")
+        val page =o.getIntValue("page")
+        val pageSize =o.getIntValue("pageSize")
+        val tableName =o.getString("tableName");
+        return  databaseService!!.getTableList(databaseService!!.getDatabase(id)!!,page ,pageSize,tableName)
     }
 
 
