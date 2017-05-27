@@ -3,7 +3,7 @@ apply plugin: 'war'
 ext.SpringVersion = "1.4.1.RELEASE"
 dependencies {
     compile "org.springframework.boot:spring-boot:$SpringVersion"
-    compile ("org.springframework.boot:spring-boot-starter-web:$SpringVersion"){
+    compile("org.springframework.boot:spring-boot-starter-web:$SpringVersion") {
         exclude module: 'org.springframework.boot:spring-boot-starter-logging'
     }
 
@@ -25,6 +25,6 @@ dependencies {
     compile project(':ignite-services')
 }
 
-springBoot{
-    mainClass ="com.towery.ignite.WebConsole"
+springBoot {
+    mainClass = "com.towery.ignite.WebConsole"
 }

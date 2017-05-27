@@ -17,7 +17,7 @@ const router = new VueRouter({
             children :[
                      {name :"databaselist", path: "/database/list" , component: DatabaseListView   },
                      {name :"sqldatamodellist", path: "/sqldatamodel/list" , component: SqlDatamodelListView   },
-                     {name :"sqldatamodelnew", path: "/sqldatamodel/new" , component: SqlDatamodelEditView   }
+                     {name :"sqldatamodeledit", path: "/sqldatamodel/edit/:modelId" , component: SqlDatamodelEditView   }
              ]
         }
     ]

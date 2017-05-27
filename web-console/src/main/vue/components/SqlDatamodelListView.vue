@@ -2,7 +2,7 @@
     <div style="width: 100%;padding:10px;">
       <el-row>
          <el-col :span="24" style="padding:10px">
-              <el-button type="primary" @click="newSqlDatamodel">新增</el-button>
+              <el-button type="primary" >新增</el-button>
          </el-col>
          <el-col :span="24">
               <el-table
@@ -17,6 +17,17 @@
                          width="180">
                        </el-table-column>
 
+                       <el-table-column label="操作">
+                             <template scope="scope">
+                               <el-button
+                                 size="small"
+                                 @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                               <el-button
+                                 size="small"
+                                 type="danger"
+                                 @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                             </template>
+                           </el-table-column>
                </el-table>
          </el-col>
         </el-row>
@@ -55,6 +66,7 @@
              this.$store.dispatch('change_page_name',[{name:"首页",path:"/"},{name:"SQL模型列表",path:"/sqldatamodel/list"}]);
 
              const me=this
+             //模型列表
              serviceApi.invokeApi("SqlDatamodelService","getSqlDatamodelList",null).then(
                     ret =>{
                          me.dataList =ret
@@ -63,8 +75,11 @@
 
         },
         methods:{
-             newSqlDatamodel(){
-                  this.$router.push("/sqldatamodel/new")
+             //newSqlDatamodel(){
+                 // this.$router.push("/sqldatamodel/new")
+             //}
+             handleEdit(index ,row){
+                 this.$router.push("/sqldatamodel/edit/"+row.id)
              }
         }
     }

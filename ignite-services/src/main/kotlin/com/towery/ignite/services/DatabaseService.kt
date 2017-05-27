@@ -54,7 +54,7 @@ open class DatabaseService {
             else{
                 queryTableName ="%"+queryTableName+"%"
             }
-            rs = conn.metaData.getTables(null, vo.dbuser!!.toUpperCase(),queryTableName, arrayOf("TABLE", "VIEW"))
+            rs = conn.metaData.getTables(null, null,queryTableName, arrayOf("TABLE", "VIEW"))
 
 
 
@@ -86,6 +86,39 @@ open class DatabaseService {
     }
 
 
+
+    fun getColumnList(vo :TDatabaseVO  ,schem :String ,tableName :String) : java.util.ArrayList<ColumnObject> {
+        var result:java.util.ArrayList<ColumnObject> = java.util.ArrayList<ColumnObject>()
+        var rs: ResultSet? = null
+        var conn :Connection?=null
+        var rows :Int=0
+        try {
+            Class.forName(vo.jdbcclass);
+            var conn = DriverManager.getConnection(vo.jdbcurl, vo.dbuser, vo.dbpassword) as Connection
+
+            rs = conn.metaData.getColumns(null, schem!!.toUpperCase(), tableName, null)
+
+
+
+            while(rs.next() ){
+                    val t: ColumnObject = ColumnObject( columntype = rs!!.getString("TYPE_NAME"), columnname = rs!!.getString("COLUMN_NAME"));
+                    result.add(t)
+            }
+
+        }catch (e:Exception){
+            logger.error("",e)
+        } finally {
+            if(rs!=null){
+                rs.close()
+            }
+            if(conn!=null){
+                conn.close()
+            }
+        }
+
+        return result
+    }
+
     companion object {
         var logger = LoggerFactory.getLogger (DatabaseService::class.java)
 
@@ -96,3 +129,6 @@ open class DatabaseService {
 
 class TableObject(val schem: String, val type: String, val name: String)
 class TableObjectList(val totalcount :Int ,var objectList :java.util.ArrayList<TableObject>)
+
+
+class ColumnObject(val columnname: String, val columntype: String)

@@ -16,6 +16,10 @@ class TSqlDatamodelVO : Model<TSqlDatamodelVO>(), Serializable {
 
     @TableField(value = "name")
     var name: String? = null
+
+    @TableField(exist = false)
+    var itemList:List<TSqlDatamodelItemVO>?=null
+
     override fun pkVal(): Serializable {
         return id!!
     }
@@ -29,6 +33,10 @@ class TSqlDatamodelItemVO : Model<TSqlDatamodelItemVO>(), Serializable {
     var modelid: String? = null
     @TableField(value = "tablename")
     var tablename: String? = null
+
+    @TableField(exist = false)
+    var columnList :List<TSqlDatamodelItemColumnVO>?=null
+
     override fun pkVal(): Serializable {
         return id!!
     }

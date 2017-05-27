@@ -11,7 +11,7 @@ class StringUtils {
         fun UUID() :String{
             val uuid = UUID.randomUUID()
 
-            return uuid.toString()
+            return uuid.toString().replace("-","")
         }
     }
 }
