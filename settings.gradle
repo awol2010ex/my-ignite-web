@@ -5,4 +5,5 @@ include "ignite-config"
 include "ignite-mybatis"
 include "ignite-entitys"
 include "ignite-services"
+include "data-node-server"
 
