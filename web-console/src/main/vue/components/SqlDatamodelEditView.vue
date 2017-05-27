@@ -67,14 +67,16 @@
            <el-col :span="8" style="padding:5px"   v-for="m in itemList">
                 <el-card class="box-card">
                   <div slot="header" class="clearfix">
-                    <span style="line-height: 20px;">{{m.tablename}}</span>
+                    <span style="line-height: 16px;font-size:14px">{{m.tablename}}</span>
+
+                    <el-button type="danger"  @click="deleteSqlDatamodelItem(m.id)" >删除</el-button>
                   </div>
                    <div class="text item">
                        <el-table
                                              :data="m.columnList"
                                              border
                                              style="width: 100%"
-
+                                              :row-style="{'font-size':'12px'}"
                                              >
                                              <el-table-column
                                                prop="columnname"
@@ -184,6 +186,10 @@
                   serviceApi.invokeApi("SqlDatamodelService","importSqlDatamodel",{modelId:this.id ,databaseId:this.selectDatabase,tableList:this.checkedTables}).then(
                          ret =>{
                               loadingInstance.close();
+                               console.log(me.$refs.selectTablePopover)
+                               me.$refs.selectTablePopover.doClose()
+
+                               me.refreshItems(me.id)
                          }
                   );
 
@@ -200,7 +206,9 @@
                              ret =>{
                                  me.selectTables=ret.objectList
                                  me.selectTableTotalCount =ret.totalcount
+
                                  loadingInstance.close();
+
                              }
                     );
                },
@@ -232,6 +240,17 @@
                              }
                     );
 
+               },
+               //删除元素
+               deleteSqlDatamodelItem(itemId){
+                   const me=this
+                   let loadingInstance = Loading.service({ fullscreen: true });
+                   serviceApi.invokeApi("SqlDatamodelService","deleteSqlDatamodelItem",{itemId:itemId}).then(
+                             ret =>{
+                                   me.refreshItems(me.id)
+                                   loadingInstance.close();
+                             }
+                    );
                }
 
          }

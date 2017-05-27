@@ -52,6 +52,9 @@ open class SqlDatamodelService {
     fun deleteSqlDatamodel( id :String){
         sqlDatamodelMapper?.deleteById(id)
     }
+    fun deleteSqlDatamodelItem( id :String){
+        sqlDatamodelItemMapper?.deleteById(id)
+    }
     fun getSqlDatamodel( id :String) :TSqlDatamodelVO?{
 
         var result :TSqlDatamodelVO?= sqlDatamodelMapper?.selectById(id)

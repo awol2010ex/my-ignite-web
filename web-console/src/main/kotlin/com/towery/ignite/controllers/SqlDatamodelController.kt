@@ -143,6 +143,25 @@ open class SqlDatamodelController {
     }
 
 
+    @RequestMapping(value = "/deleteSqlDatamodelItem")
+    @ResponseBody
+    fun deleteSqlDatamodelItem(data: String): Boolean {
+        var result: Boolean = true
+        try {
+            val o = JSON.parseObject(data)
+            val itemId = o.getString("itemId")
+            sqlDatamodelService!!.deleteSqlDatamodelItem(itemId)
+
+        } catch (e: Exception) {
+            logger.error("", e)
+
+            result = false
+        }
+
+        return result
+    }
+
+
     companion object {
         var logger = Logger.getLogger(SqlDatamodelController::class.java)
     }
