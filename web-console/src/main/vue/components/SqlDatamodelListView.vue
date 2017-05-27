@@ -11,6 +11,11 @@
                        style="width: 100%"
 
                        >
+                         <el-table-column
+                                                 prop="id"
+                                                 label="模型ID"
+                                                 width="180">
+                          </el-table-column>
                        <el-table-column
                          prop="name"
                          label="模型名称"
