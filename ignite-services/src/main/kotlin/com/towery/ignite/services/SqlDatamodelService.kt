@@ -8,6 +8,8 @@ import com.towery.ignite.mybatis.mapper.TSqlDatamodelItemMapper
 import com.towery.ignite.mybatis.mapper.TSqlDatamodelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.sql.Timestamp
+import java.sql.Date
 
 /**
  * Created by User on 2017/5/24.
@@ -62,4 +64,37 @@ open class SqlDatamodelService {
         return result
     }
 
+
+    fun getDataTypeClassName( type:String):String{
+        if("VACHAR".equals(type)){
+            return java.lang.String::class.java.name
+        }
+        if("CHAR".equals(type)){
+            return java.lang.String::class.java.name
+        }
+        if("CLOB".equals(type)){
+            return java.lang.String::class.java.name
+        }
+        if("INTEGER".equals(type)){
+            return java.lang.Integer::class.java.name
+        }
+        if("TIMESTAMP".equals(type)){
+            return java.sql.Timestamp::class.java.name
+        }
+        if("DECIMAL".equals(type)){
+            return java.math.BigDecimal::class.java.name
+        }
+        if("SMALLINT".equals(type)){
+            return  java.lang.Short::class.java.name
+        }
+        if("DOUBLE".equals(type)){
+            return java.lang.Double::class.java.name
+        }
+        if("DATE".equals(type)){
+            return java.util.Date::class.java.name
+        }
+
+
+        return java.lang.String::class.java.name
+    }
 }

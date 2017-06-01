@@ -53,6 +53,12 @@ class TSqlDatamodelItemColumnVO : Model<TSqlDatamodelItemColumnVO>(), Serializab
     var columntype: String? = null
     @TableField(value = "modelitemid")
     var modelitemid: String? = null
+
+    @TableField(value = "pk")
+    var pk: Integer? = null
+
+
+
     override fun pkVal(): Serializable {
         return id!!
     }

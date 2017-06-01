@@ -1,9 +1,3 @@
-server:
-    port: 18080
-    context-path: /web-console
-    tomcat:
-         uri-encoding: UTF-8
-         max-threads: 150
 logging:
     level:
         com:
@@ -11,7 +5,7 @@ logging:
                   ignite: DEBUG
 spring:
     application:
-        name: my-ignite-web-console
+        name: data-node-server
     profiles:
         active: dev
     datasource:
@@ -36,10 +30,6 @@ spring:
         filters: stat,wall,log4j
         maxPoolPreparedStatementPerConnectionSize: 20
         useGlobalDataSourceStat: true
-    mvc:
-        view:
-            prefix: /jsp/
-            suffix: .jsp
 mybatis:
      mapper-locations: mybatis/**/*.xml
      typeAliasesPackage: com.towery.ignite.mybatis

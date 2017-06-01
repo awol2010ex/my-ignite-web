@@ -5,11 +5,10 @@ import com.towery.ignite.mybatis.mapper.TDatabaseMapper
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.sql.DriverManager
 import java.sql.Connection
+import java.sql.DriverManager
 import java.sql.ResultSet
-import java.util.*
-import kotlin.coroutines.experimental.EmptyCoroutineContext.plus
+import java.util.ArrayList
 
 /**
  * Created by User on 2017/5/23.
@@ -89,27 +88,45 @@ open class DatabaseService {
 
     fun getColumnList(vo :TDatabaseVO  ,schem :String ,tableName :String) : java.util.ArrayList<ColumnObject> {
         var result:java.util.ArrayList<ColumnObject> = java.util.ArrayList<ColumnObject>()
-        var rs: ResultSet? = null
+        var rs1: ResultSet? = null
+        var rs2: ResultSet? = null
         var conn :Connection?=null
         var rows :Int=0
         try {
             Class.forName(vo.jdbcclass);
-            var conn = DriverManager.getConnection(vo.jdbcurl, vo.dbuser, vo.dbpassword) as Connection
+            conn = DriverManager.getConnection(vo.jdbcurl, vo.dbuser, vo.dbpassword) as Connection
 
-            rs = conn.metaData.getColumns(null, schem!!.toUpperCase(), tableName, null)
+            rs1 = conn.metaData.getColumns(null, schem!!.toUpperCase(), tableName, null)
+
+            rs2 =conn.metaData.getPrimaryKeys(null , schem!!.toUpperCase(), tableName)
+            var pkList :ArrayList<String> =ArrayList<String>()
+            while(rs2.next() ){
+                val columnName = rs2.getString("COLUMN_NAME")//列名
+                pkList.add(columnName)
+            }
 
 
+            while(rs1.next() ){
+                    var t: ColumnObject = ColumnObject( columntype = rs1!!.getString("TYPE_NAME"), columnname = rs1!!.getString("COLUMN_NAME"),pk=Integer(0)  );
 
-            while(rs.next() ){
-                    val t: ColumnObject = ColumnObject( columntype = rs!!.getString("TYPE_NAME"), columnname = rs!!.getString("COLUMN_NAME"));
+                    if(pkList.contains(t.columnname)){
+                        t.pk= Integer(1)
+                    }
+                    else{
+                        t.pk=Integer(0)
+                    }
+
                     result.add(t)
             }
 
         }catch (e:Exception){
             logger.error("",e)
         } finally {
-            if(rs!=null){
-                rs.close()
+            if(rs1!=null){
+                rs1.close()
+            }
+            if(rs2!=null){
+                rs2.close()
             }
             if(conn!=null){
                 conn.close()
@@ -131,4 +148,4 @@ class TableObject(val schem: String, val type: String, val name: String)
 class TableObjectList(val totalcount :Int ,var objectList :java.util.ArrayList<TableObject>)
 
 
-class ColumnObject(val columnname: String, val columntype: String)
+class ColumnObject(var columnname: String, var columntype: String,var pk :Integer)

@@ -76,7 +76,7 @@ open class SqlDatamodelController {
         return result
     }
 
-//µ¼Èë±íÄ£ÐÍ
+    //å¯¼å…¥è¡¨æ¨¡åž‹
     @RequestMapping(value = "/importSqlDatamodel")
     @ResponseBody
     fun importSqlDatamodel(data: String): Boolean {
@@ -104,14 +104,14 @@ open class SqlDatamodelController {
 
                     val columnList = databaseService.getColumnList(databaseVO!!, j.getString("schem"), j.getString("name"))
                     columnList.forEach {
-                         var columnVO = TSqlDatamodelItemColumnVO()
-                         columnVO.id =StringUtils.UUID()
-                         columnVO.columnname  =it.columnname
-                         columnVO.columntype =it.columntype
-                         columnVO.modelitemid =itemVO.id
-
-                         //columnVO.insert()
-                         sqlDatamodelService!!.insertSqlDatamodelItemColumn(columnVO)
+                        var columnVO = TSqlDatamodelItemColumnVO()
+                        columnVO.id =StringUtils.UUID()
+                        columnVO.columnname  =it.columnname
+                        columnVO.columntype =it.columntype
+                        columnVO.modelitemid =itemVO.id
+                        columnVO.pk =it.pk
+                        //columnVO.insert()
+                        sqlDatamodelService!!.insertSqlDatamodelItemColumn(columnVO)
                     };
                 }
             }
@@ -126,7 +126,7 @@ open class SqlDatamodelController {
     }
 
 
-    //Ä£ÐÍÔªËØÁÐ±í
+    //æ¨¡åž‹å…ƒç´ åˆ—è¡¨
     @RequestMapping(value = "/getSqlDatamodel")
     @ResponseBody
     fun getSqlDatamodel(data: String):TSqlDatamodelVO? {

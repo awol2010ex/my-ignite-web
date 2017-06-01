@@ -1,3 +1,25 @@
+
+apply plugin: 'spring-boot'
+ext.SpringVersion = "1.4.1.RELEASE"
 dependencies {
+    compile "org.springframework.boot:spring-boot:$SpringVersion"
+
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    runtime fileTree(dir: 'lib', include: ['*.jar'])
+    runtime 'mysql:mysql-connector-java'
+    compile project(':ignite-utils')
+    compile project(':ignite-config')
+    compile project(':ignite-entitys')
+    compile project(':ignite-mybatis')
+    compile project(':ignite-services')
+}
+bootRun {
+    if ( project.hasProperty("appArgs") ) {
+        args Eval.me(appArgs)
+    }
+}
+springBoot {
+    mainClass = "com.towery.ignite.DataNodeServer"
+
 
 }
