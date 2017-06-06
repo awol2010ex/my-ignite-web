@@ -82,7 +82,7 @@ open class SqlDatamodelService {
             return java.sql.Timestamp::class.java.name
         }
         if("DECIMAL".equals(type)){
-            return java.math.BigDecimal::class.java.name
+            return java.lang.Double::class.java.name
         }
         if("SMALLINT".equals(type)){
             return  java.lang.Short::class.java.name

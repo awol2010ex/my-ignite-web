@@ -40,6 +40,7 @@ open class DataNode : CommandLineRunner {
         var entitys =ArrayList<QueryEntity>()
         for(itemVO :TSqlDatamodelItemVO  in sqlDatamodelItemList){
             val entity = QueryEntity("CustomKey", itemVO.tablename)
+
             val flds = LinkedHashMap<String, String>()
             val keyFlds = HashSet<String>()
             for( columnVO : TSqlDatamodelItemColumnVO in  itemVO.columnList!!){
@@ -49,8 +50,12 @@ open class DataNode : CommandLineRunner {
                 }
             }
             entity.fields = flds
+            if(keyFlds.size>0) {
+                entity.setKeyFields(keyFlds)
+            } else {
+                entity.setKeyType("java.lang.Long")
+            }
 
-            entity.setKeyFields(keyFlds);
             // End of new settings, nothing else here is DML related
             entity.setIndexes(Collections.emptyList());
             entitys.add(entity)
