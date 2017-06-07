@@ -4,13 +4,13 @@ version '1.0-SNAPSHOT'
 buildscript {
 
     repositories {
-        maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
-        maven{
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven {
             url 'http://repo.spring.io/libs-milestone/'
         }
 
         mavenCentral()
-        jcenter{
+        jcenter {
             url 'http://jcenter.bintray.com/'
         }
     }
@@ -27,13 +27,13 @@ targetCompatibility = 1.8
 
 
 repositories {
-    maven {url "http://maven.aliyun.com/nexus/content/groups/public"}
-    maven{
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    maven {
         url 'http://repo.spring.io/libs-milestone/'
     }
 
     mavenCentral()
-    jcenter{
+    jcenter {
         url 'http://jcenter.bintray.com/'
     }
 }

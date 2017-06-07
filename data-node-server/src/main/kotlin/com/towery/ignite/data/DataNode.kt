@@ -5,16 +5,23 @@ import com.towery.ignite.mybatis.entity.TSqlDatamodelItemVO
 import com.towery.ignite.mybatis.entity.TSqlDatamodelVO
 import com.towery.ignite.services.SqlDatamodelService
 import org.apache.ignite.Ignition
+import org.apache.ignite.cache.CacheMode
 import org.apache.ignite.cache.QueryEntity
 import org.apache.ignite.configuration.CacheConfiguration
+import org.apache.ignite.configuration.CollectionConfiguration
 import org.apache.ignite.configuration.IgniteConfiguration
+import org.apache.ignite.configuration.MemoryConfiguration
 import org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi
 import org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.env.Environment
 import org.springframework.stereotype.Component
 import java.util.*
+import org.apache.ignite.configuration.MemoryPolicyConfiguration
+
+
 
 /** 服务启动执行
  * Created by User on 2017/5/31.
@@ -22,8 +29,8 @@ import java.util.*
 @Component
 @Configuration
 open class DataNode : CommandLineRunner {
-
-
+    @Autowired
+    private val env: Environment? = null
     @Autowired
     val sqlDatamodelService: SqlDatamodelService? = null
 /*　启动脚本
@@ -34,6 +41,12 @@ open class DataNode : CommandLineRunner {
 
         val modelId :String?= args[0];//模型ID
         val modelVO :TSqlDatamodelVO?   =sqlDatamodelService!!.getSqlDatamodel(modelId!!)
+
+    // Create new configuration.
+        val cfg = IgniteConfiguration();
+
+
+
         val cacheCfg = CacheConfiguration<Any, Any>(modelVO!!.name)
         val  sqlDatamodelItemList:List<TSqlDatamodelItemVO>  =sqlDatamodelService!!.getSqlDatamodelItemListByModelId(modelId!!)
 
@@ -61,16 +74,41 @@ open class DataNode : CommandLineRunner {
             entitys.add(entity)
         }
     cacheCfg.setQueryEntities(entitys);
-    // Create new configuration.
-    val cfg = IgniteConfiguration();
+
+    cacheCfg.isCopyOnRead =(env!!.getProperty("ignite.copyOnRead","false")).toBoolean()
+
+    cacheCfg.isOnheapCacheEnabled =false
+    cacheCfg.cacheMode=CacheMode.PARTITIONED
     cfg.setCacheConfiguration(cacheCfg);
+
+    cfg.isPeerClassLoadingEnabled=false
 
 
     val ipFinder = TcpDiscoveryMulticastIpFinder();
-    ipFinder.setAddresses(Arrays.asList("127.0.0.1:47500..47509"));
+    ipFinder.setAddresses(Arrays.asList(env!!.getProperty("ignite.ipAddress","127.0.0.1:47500..47509")));
     val tcpDiscoverySpi = TcpDiscoverySpi();
     tcpDiscoverySpi.setIpFinder(ipFinder);
     cfg.setDiscoverySpi(tcpDiscoverySpi);
+
+    cfg.publicThreadPoolSize =(env!!.getProperty("ignite.systemThreadPoolSize","64")).toInt()
+    cfg.systemThreadPoolSize=(env!!.getProperty("ignite.systemThreadPoolSize","64")).toInt()
+
+
+    val memCfg = MemoryConfiguration()
+
+    val plc = MemoryPolicyConfiguration()
+
+    plc.name = "dfltPlc"
+    plc.initialSize  =800* 1024* 1024
+    plc.isMetricsEnabled=true
+
+    memCfg.setMemoryPolicies(plc)
+    memCfg.defaultMemoryPolicyName = "dfltPlc"
+
+
+
+    cfg.memoryConfiguration = memCfg
+
     // Start Ignite node with given configuration.
     Ignition.start(cfg);
         println(">>>>>>>>>>>>>>>data node启动执行，执行加载数据等操作 end <<<<<<<<<<<<<")

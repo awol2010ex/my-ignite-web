@@ -33,3 +33,10 @@ spring:
 mybatis:
      mapper-locations: mybatis/**/*.xml
      typeAliasesPackage: com.towery.ignite.mybatis
+ignite:
+     publicThreadPoolSize: 64
+     systemThreadPoolSize: 32
+     copyOnRead: false
+     memoryMode: OFFHEAP_VALUES
+     offHeapMaxMemory: 0
+     ipAddress: 127.0.0.1:47500..47509

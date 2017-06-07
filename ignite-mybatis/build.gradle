@@ -1,4 +1,3 @@
-
 dependencies {
     compile 'org.mybatis:mybatis:$mybatis'
     compile 'org.mybatis:mybatis-spring:$mybatisSpring'
