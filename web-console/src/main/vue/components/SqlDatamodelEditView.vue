@@ -86,6 +86,16 @@
                                                   prop="columntype"
                                                    label="类型">
                                               </el-table-column>
+                                              <el-table-column
+                                                    prop="pk"
+                                                    label="主键">
+                                                    <template scope="scope">
+                                                    　　　　　 <el-checkbox v-model="scope.row.pk"
+                                                                  true-label="1" false-label="0"
+                                                                  :checked="scope.row.pk==1" ></el-checkbox>
+
+                                                    </template>
+                                               </el-table-column>
                                      </el-table>
 
                     </div>
@@ -102,19 +112,20 @@
     import Vue from 'vue';
     import {serviceApi} from '../services/service.js';
 
-    import {Col,Row ,Button,Input,Card} from 'element-ui'
+    import {Col,Row ,Button,Input,Card,Checkbox} from 'element-ui'
     Vue.component(Col.name, Col)
     Vue.component(Row.name, Row)
     Vue.component(Button.name, Button)
      Vue.component(Input.name, Input)
      Vue.component(Card.name, Card)
+      Vue.component(Checkbox.name, Checkbox)
     import 'element-ui/lib/theme-default/icon.css';
     import 'element-ui/lib/theme-default/row.css';
     import 'element-ui/lib/theme-default/col.css';
     import 'element-ui/lib/theme-default/button.css';
     import 'element-ui/lib/theme-default/input.css';
     import 'element-ui/lib/theme-default/card.css';
-
+    import 'element-ui/lib/theme-default/checkbox.css';
 
     import {Popover} from 'element-ui'
     Vue.component(Popover.name, Popover)
