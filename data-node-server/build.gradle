@@ -17,8 +17,8 @@ bootRun {
         args Eval.me(appArgs)
     }
     jvmArgs = ["-server",
-                "-Xms4g",
-                "-Xmx4g",
+                "-Xms2g",
+                "-Xmx2g",
                 "-XX:NewSize=512m",
                 "-XX:SurvivorRatio=6",
                 "-XX:+AlwaysPreTouch",
